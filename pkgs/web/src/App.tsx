@@ -1,9 +1,9 @@
-import React from 'react';
+import SideBar from "./SideBar";
 
 function App() {
   return (
-    <div>
-      <h1 className="text-center">helwo ppl</h1>
+    <div className="flex">
+      <SideBar />
     </div>
   );
 }
