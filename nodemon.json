@@ -1,0 +1,13 @@
+{
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "node_modules"
+  ],
+  "watch": [
+    "src",
+    "tailwind.config.js"
+  ],
+  "exec": "yarn start",
+  "ext": "ts"
+}
