@@ -1,4 +1,4 @@
-version: '2'
+version: '3.1'
 services:
   everything:
     build: .
@@ -11,9 +11,17 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://moonapp@postgres/moon
+      DATABASE_URL: postgresql://moonapp:moon@localhost:5432/moon
+      NODE_ENV: development
   db:
-    image: postgres:9.6.2-alpine
+    image: postgres
+    restart: always
     environment:
       POSTGRES_USER: moonapp
       POSTGRES_DB: moon
+      POSTGRES_PASSWORD: moon
+    ports: 
+      - "5432:5432"
+    # volumes:
+    #   - ./postgres-data:/var/lib/postgresql/data
+
