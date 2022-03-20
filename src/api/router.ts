@@ -1,13 +1,16 @@
 import type { FastifyInstance } from "fastify";
 import fastifySocketio from "fastify-socket.io";
 import fastifySensible from "fastify-sensible";
+import fastifyAuth from "fastify-auth";
 import auth from "./auth";
 import realtime from "./realtime";
 import { failure } from "./utils";
 import status from "statuses";
+import chat from "./chat";
 
 export default async function (app: FastifyInstance) {
   app.register(fastifySensible, { errorHandler: false })
+  app.register(fastifyAuth)
   app.setNotFoundHandler((req, rep) => {
     rep.status(404).send(failure(`could not find ${req.url}`, null));
   });
@@ -22,7 +25,7 @@ export default async function (app: FastifyInstance) {
       rep
         .status(err.statusCode)
         //.send(failure(status(err.statusCode) as string, err.message))
-        .send(failure(status(err.statusCode) as string, err.cause ? err.cause : err.message ? err.message : null));
+        .send(failure((status(err.statusCode) as string).toLowerCase(), err.cause ? err.cause : err.message ? err.message : null));
 
     } else {
       //rep.status(500).send(failure("internal server error", err.stack ? err.stack : null))
@@ -37,4 +40,5 @@ export default async function (app: FastifyInstance) {
 
   app.register(realtime, { prefix: "/rt" });
   app.register(auth, { prefix: "/auth" });
+  app.register(chat, { prefix: "/chat" })
 }

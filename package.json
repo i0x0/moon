@@ -13,6 +13,7 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "fastify": "^3.27.3",
+    "fastify-auth": "^1.1.0",
     "fastify-helmet": "^7.0.1",
     "fastify-nextjs": "^7.2.0",
     "fastify-sensible": "^3.1.2",

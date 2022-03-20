@@ -6,3 +6,5 @@ tasks:
 vscode:
   extensions:
     - Prisma.prisma
+    - ms-azuretools.vscode-docker
+    - EditorConfig.EditorConfig

@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { FastifyInstance } from "fastify";
 import bcrypt from "bcrypt";
-import { success } from "./utils";
+import { ok, success } from "./utils";
 import jwt from "jsonwebtoken"
 import { SECRET } from "../constants";
 
@@ -49,7 +49,7 @@ export default async function (app: FastifyInstance) {
           role: "USER",
         },
       });
-      rep.send(success("ok", null));
+      rep.send(ok());
     }
   );
 
