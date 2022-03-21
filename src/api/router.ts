@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
-import fastifySocketio from "fastify-socket.io";
 import fastifySensible from "fastify-sensible";
+import fastifySocketio from "fastify-socket.io";
 import fastifyAuth from "fastify-auth";
 import auth from "./auth";
 import realtime from "./realtime";
@@ -34,10 +34,14 @@ export default async function (app: FastifyInstance) {
     // return rep.status(err.statusCode || 500).send(failure())
   });
 
-  app.register(fastifySocketio, {
-    path: "/rt",
-  });
 
+  app.register(fastifySocketio, {
+    path: "/rt/"
+  }).after((err) => {
+    if (err) {
+      console.error(err)
+    }
+  });
   app.register(realtime, { prefix: "/rt" });
   app.register(auth, { prefix: "/auth" });
   app.register(chat, { prefix: "/chat" })

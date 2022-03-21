@@ -17,10 +17,11 @@ export default async function (app: FastifyInstance) {
       schema: {
         body: Create,
       },
-      onRequest: async (x, y) => await forceAuth(x, y)
+      onRequest: await forceAuth
     },
     async (req, rep) => {
       let { name } = req.body;
+      //console.log(req.userId)
       await prisma.chat.create({
         data: { owner: { connect: { id: req.userId } }, name },
       });

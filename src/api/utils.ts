@@ -32,9 +32,9 @@ const forceAuth = async (req: Request, rep: Reply) => {
     return rep.unauthorized();
   } else {
     // token ? rep.unauthorized() : undefined
-    let decoded = await jwt.verify(token, SECRET);
+    let decoded: any = await jwt.verify(token, SECRET);
     if (decoded) {
-      req.userId = decoded as string;
+      req.userId = decoded.id;
     }
   }
 };

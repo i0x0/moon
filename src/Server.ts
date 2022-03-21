@@ -2,7 +2,7 @@ import fastify, { FastifyInstance } from "fastify";
 import fastifyNext from "fastify-nextjs";
 import { isProd, PORT } from './constants';
 import apiRouter from "./api/router"
-import fastifyHelmet from "fastify-helmet";
+//import fastifyHelmet from "fastify-helmet";
 import { PrismaClient } from "@prisma/client";
 
 export default class {
@@ -31,7 +31,7 @@ export default class {
 
   setup() {
     let app = this.app
-    app.register(fastifyHelmet, { contentSecurityPolicy: false })
+    //app.register(fastifyHelmet, { contentSecurityPolicy: false })
     app.register(fastifyNext, {
       dev: !isProd,
       logLevel: 'debug',

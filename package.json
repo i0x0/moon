@@ -28,7 +28,7 @@
     "statuses": "^2.0.1"
   },
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon -L",
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "docker:up": "docker-compose up -d --build",
