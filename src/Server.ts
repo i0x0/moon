@@ -4,6 +4,7 @@ import { isProd, PORT } from './constants';
 import apiRouter from "./api/router"
 //import fastifyHelmet from "fastify-helmet";
 import { PrismaClient } from "@prisma/client";
+import fastifyRoutes from "fastify-routes"
 
 export default class {
   private app: FastifyInstance
@@ -26,11 +27,13 @@ export default class {
         process.exit(1)
       }
       this.app.log.info("server started...")
+      console.log(this.app.routes)
     })
   }
 
   setup() {
     let app = this.app
+    app.register(fastifyRoutes)
     //app.register(fastifyHelmet, { contentSecurityPolicy: false })
     app.register(fastifyNext, {
       dev: !isProd,
@@ -52,6 +55,7 @@ export default class {
       return rep.nextRenderError(err)
     })
     app.register(apiRouter, { prefix: '/api' })
+
   }
 }
 

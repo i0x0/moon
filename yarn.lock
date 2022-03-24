@@ -997,6 +997,13 @@ fastify-plugin@^3.0.0:
   resolved "https://registry.yarnpkg.com/fastify-plugin/-/fastify-plugin-3.0.1.tgz#79e84c29f401020f38b524f59f2402103fd21ed2"
   integrity sha512-qKcDXmuZadJqdTm6vlCqioEbyewF60b/0LOFCcYN1B6BIZGlYJumWWOYs70SFYLDAH4YqdE1cxH/RKMG7rFxgA==
 
+fastify-routes@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/fastify-routes/-/fastify-routes-3.1.0.tgz#0db1f42532cb4d4ebd47507d33ec75df250b9d31"
+  integrity sha512-DSNqV+Fg3kIK1C/yLATLQBSIe7FJx70XfLFqfn52jdXv88gsj0s8uVHmREVBNJzofp3zIobqf7qHOJYMOc2V+A==
+  dependencies:
+    fastify-plugin "^3.0.0"
+
 fastify-sensible@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/fastify-sensible/-/fastify-sensible-3.1.2.tgz#8b8672b4c55ca17a5ae267d5953b53c141b2a380"
