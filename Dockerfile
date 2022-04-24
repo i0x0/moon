@@ -1,5 +1,8 @@
 FROM node:16-alpine
 
+ARG DATABASE_URL
+ARG PORT
+
 WORKDIR /usr/app
 
 COPY package.json ./
@@ -12,8 +15,8 @@ COPY . .
 
 RUN npx prisma generate
 
-#RUN yarn
+RUN yarn next build
 
 #EXPOSE ${PORT}
 
-#ENTRYPOINT ["yarn", "dev"]
+ENTRYPOINT ["yarn", "prod:start"]

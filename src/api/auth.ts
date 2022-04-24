@@ -1,7 +1,7 @@
 import { Static, Type } from "@sinclair/typebox";
 import { FastifyInstance } from "fastify";
 import bcrypt from "bcrypt";
-import { ok, success } from "./utils";
+import { isAuthed, ok, success } from "./utils";
 import jwt from "jsonwebtoken"
 import { SECRET } from "../constants";
 
@@ -85,6 +85,11 @@ export default async function (app: FastifyInstance) {
       }
     }
   );
+
+  app.get("/authed", async (req, rep) => {
+    rep.send(await isAuthed(req))
+  })
+
 
   // app.get('/list', async (_, rep) => {
   //   rep.send(await prisma.user.findMany({}))

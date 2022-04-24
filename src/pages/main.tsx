@@ -15,3 +15,18 @@ export default function Main() {
     </>
   )
 }
+
+export async function getServerSideProps(ctx: any) {
+  let { isAuthed } = ctx.req
+
+  if (!isAuthed) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false
+      }
+    }
+  } return {
+    props: {}
+  }
+}

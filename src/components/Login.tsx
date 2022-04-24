@@ -2,7 +2,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gray-700 text-white antialiased px-4 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl mx-auto text-center">
-        <span className="text-2xl font-semibold">Welcomw back to moon!</span>
+        <span className="text-2xl font-semibold">Welcome back!</span>
         <div className="relative mt-4 bg-gray-800 shadow-md sm:rounded-lg text-left">
           <div className="py-6 px-8">
             <label className="block font-semibold">Username</label>

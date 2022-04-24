@@ -36,8 +36,9 @@ model Message {
   createdAt DateTime @default(now())
   sender    User     @relation("messages", fields: [senderId], references: [id])
   senderId  String
-  chat      Chat[]   @relation("chat_msgs")
+  chat      Chat     @relation("chat_msgs", fields: [chatId], references: [id])
   content   String
+  chatId    Int
 }
 
 enum Role {

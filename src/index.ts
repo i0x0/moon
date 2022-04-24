@@ -1,3 +1,7 @@
 import Server from "./Server";
 
-new Server()
+try {
+  new Server()
+} catch (e) {
+  console.log("globalServerError", e);
+}
