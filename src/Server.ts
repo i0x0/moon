@@ -1,6 +1,6 @@
 import fastify, { FastifyInstance } from "fastify";
 import fastifyNext from "fastify-nextjs";
-import { isProd, PORT } from './constants';
+import { COOKIE_SECRET, isProd, PORT } from './constants';
 import apiRouter from "./api/router"
 //import fastifyHelmet from "fastify-helmet";
 import { PrismaClient } from "@prisma/client";
@@ -9,6 +9,7 @@ import EventEmitter from "events";
 import { isAuthed, log } from "./api/utils";
 import { InternalCommunicationTypes, InternalMessage } from "./api/parsing";
 import { NextUrlWithParsedQuery } from "next/dist/server/request-meta";
+import fastifyCookie from "fastify-cookie";
 
 export default class {
   private app: FastifyInstance
@@ -46,6 +47,9 @@ export default class {
 
   setup() {
     let app = this.app
+    app.register(fastifyCookie, {
+      secret: COOKIE_SECRET
+    })
     app.register(fastifyRoutes)
     //app.register(fastifyHelmet, { contentSecurityPolicy: false })
     app.register(fastifyNext, {
@@ -76,10 +80,7 @@ export default class {
       return rep.nextRender("/error")
     })
 
-
-
     app.register(apiRouter, { prefix: '/api' })
-
   }
 
   eventsSetup() {

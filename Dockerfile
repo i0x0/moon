@@ -17,6 +17,9 @@ RUN npx prisma generate
 
 RUN yarn next build
 
+RUN yarn build
+
+
 #EXPOSE ${PORT}
 
 ENTRYPOINT ["yarn", "prod:start"]

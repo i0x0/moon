@@ -25,7 +25,7 @@ const success = <T>(message: string, data: T): Response<T> => {
 };
 
 const forceAuth = async (req: Request, rep: Reply) => {
-  const token = req.headers["authorization"];
+  const token = req.cookies.id || req.headers["authorization"];
 
   if (!token) {
     log("uhh no token?");
@@ -38,6 +38,20 @@ const forceAuth = async (req: Request, rep: Reply) => {
     }
   }
 };
+
+const isAuthed = async (req: FastifyRequest): Promise<boolean> => {
+  let token = req.cookies.id || req.headers["authorization"]
+  let res: boolean = false;
+  if (!token) {
+    res = false
+  } else {
+    let decoded: any = await jwt.verify(token, SECRET);
+    if (decoded) {
+      res = true
+    }
+  }
+  return res
+}
 
 const ok = () => {
   return success("ok", null);
@@ -54,20 +68,6 @@ function removeItem<T>(arr: Array<T>, value: T): Array<T> {
 
 const log = (...data: any[]): void => {
   !isProd ? console.log(...data) : undefined;
-}
-
-const isAuthed = async (req: FastifyRequest): Promise<boolean> => {
-  let token = req.headers["authorization"]
-  let res: boolean = false;
-  if (!token) {
-    res = false
-  } else {
-    let decoded: any = await jwt.verify(token, SECRET);
-    if (decoded) {
-      res = true
-    }
-  }
-  return res
 }
 
 export { failure, success, forceAuth, ok, removeItem, log, isAuthed };
