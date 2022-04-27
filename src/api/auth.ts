@@ -79,7 +79,7 @@ export default async function (app: FastifyInstance) {
         let token = await jwt.sign({
           id: test.id,
         }, SECRET)
-        rep.setCookie('id', token, { path: '/', signed: true }).send(success("ok", token));
+        rep.setCookie('id', token, { path: '/' }).send(success("ok", token));
       } else {
         rep.badRequest("Invalid password")
       }

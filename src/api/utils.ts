@@ -26,7 +26,7 @@ const success = <T>(message: string, data: T): Response<T> => {
 
 const forceAuth = async (req: Request, rep: Reply) => {
   const token = req.cookies.id || req.headers["authorization"];
-
+  log(token)
   if (!token) {
     log("uhh no token?");
     rep.unauthorized();
@@ -41,6 +41,7 @@ const forceAuth = async (req: Request, rep: Reply) => {
 
 const isAuthed = async (req: FastifyRequest): Promise<boolean> => {
   let token = req.cookies.id || req.headers["authorization"]
+  log(token)
   let res: boolean = false;
   if (!token) {
     res = false

@@ -9,6 +9,7 @@ export default function Main() {
           <div className="grid place-items-center h-screen overflow-hidden text-white">
             <span className="text-2xl font-semibold">Welcome back to moon!</span>
             <div className="relative mt-4 bg-gray-600 shadow-md sm:rounded-lg text-left"></div>
+            {}
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useState } from "react";
 import { toTitleCase } from "../api/utils"
 import { httpClient } from "../utils"
+import Router from 'next/router'
 
 interface LoginType {
   type: 'login' | 'register'
@@ -14,6 +15,9 @@ interface LoginErrors {
 }
 
 const Login = ({ type }: LoginType) => {
+
+  const [httpError, setHttpError] = useState("")
+
   return (
     <div className="min-h-screen bg-gray-700 text-white antialiased px-4 py-6 flex flex-col justify-center sm:py-12">
       <div className="relative py-3 sm:max-w-xl mx-auto text-center">
@@ -30,14 +34,30 @@ const Login = ({ type }: LoginType) => {
             if (!values.username) {
               errors.username = 'Required';
             }
+
+            if (!values.username) {
+              errors.username = 'Required';
+            }
             return errors;
           }}
           onSubmit={async (values) => {
-            switch (type) {
-              case 'login': {
-                let data = await httpClient.post('/auth/login', values)
-                console.log(data)
+            try {
+              switch (type) {
+                case 'login': {
+                  let data = await httpClient.post('/auth/login', values)
+                  console.log(data)
+                  Router.push("/")
+                  break;
+                }
+                case 'register': {
+                  let data = await httpClient.post('/auth/create', values)
+                  console.log(data)
+                  Router.push("/login")
+                  break;
+                }
               }
+            } catch (err: any) {
+              setHttpError(err?.response.data.data)
             }
           }}
         >
@@ -61,7 +81,7 @@ const Login = ({ type }: LoginType) => {
                   onBlur={handleBlur}
                   value={values.username}
                   placeholder="Username"
-                  className="bg-gray-900 border-gray-800 border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded-md"
+                  className={"bg-gray-900 border-gray-800 border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded-md"}
                 />
                 <label className="block mt-3 font-semibold">Password</label>
                 <input
@@ -71,8 +91,10 @@ const Login = ({ type }: LoginType) => {
                   onBlur={handleBlur}
                   value={values.password}
                   placeholder="Password"
-                  className="bg-gray-900 border-gray-800 border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded-md"
+                  className={`bg-gray-900 ${errors.password ? "border-red-600" : "border-gray-800"} border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded-md`}
                 />
+                {errors.password && touched.password && errors.password}
+                {httpError ? <p className="text-red-600"> {httpError} </p> : undefined}
                 <div className="flex justify-between items-baseline">
                   <button type="submit" className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg" disabled={isSubmitting}>{toTitleCase(type)}</button>
                   {(() => {
