@@ -3,7 +3,13 @@ image:
 
 tasks:
   - init: yarn install 
-    command: yarn run docker:up
+    command: |
+      createdb moon
+      DATABASE_URL="postgresql://gitpod@localhost/moon" yarn dev
+
+ports:
+  - port: 3000
+    onOpen: open-browser
 
 vscode:
   extensions:

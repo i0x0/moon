@@ -70,4 +70,12 @@ const log = (...data: any[]): void => {
   !isProd ? console.log(...data) : undefined;
 }
 
-export { failure, success, forceAuth, ok, removeItem, log, isAuthed };
+function toTitleCase(str: string) {
+  return str.replace(
+    /\w\S*/g,
+    function(txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    }
+  );
+}
+export { failure, success, forceAuth, ok, removeItem, log, isAuthed, toTitleCase };

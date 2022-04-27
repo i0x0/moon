@@ -69,7 +69,10 @@ export default class {
       app.next('/', async (app, req, rep) => {
         app.render(req.raw, rep.raw, '/main', req.query as undefined, {} as NextUrlWithParsedQuery)
       })
-      app.next('/login')
+      // app.next('/login')
+      // ['login'].forEach(x => app.next('/${x}'));
+      let nextPages: string[] = ["login", "register"]
+      nextPages.forEach((page) => {app.next(`/${page}`)})
     })
     app.setNotFoundHandler((_req, rep) => {
       //log(_req)
