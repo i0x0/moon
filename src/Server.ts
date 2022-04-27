@@ -1,4 +1,5 @@
 import fastify, { FastifyInstance } from "fastify";
+// @ts-ignore
 import fastifyNext from "fastify-nextjs";
 import { COOKIE_SECRET, isProd, PORT } from "./constants";
 import apiRouter from "./api/router";
