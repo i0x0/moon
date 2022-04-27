@@ -5,11 +5,13 @@ import { COOKIE_SECRET, isProd, PORT } from "./constants";
 import apiRouter from "./api/router";
 //import fastifyHelmet from "fastify-helmet";
 import { PrismaClient } from "@prisma/client";
+// @ts-ignore
 import fastifyRoutes from "fastify-routes";
 import EventEmitter from "events";
 import { isAuthed, log } from "./api/utils";
 import { InternalCommunicationTypes, InternalMessage } from "./api/parsing";
 import { NextUrlWithParsedQuery } from "next/dist/server/request-meta";
+// @ts-ignore
 import fastifyCookie from "fastify-cookie";
 
 export default class {
