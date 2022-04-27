@@ -16,3 +16,4 @@ vscode:
     - Prisma.prisma
     - ms-azuretools.vscode-docker
     - EditorConfig.EditorConfig
+    - wix.vscode-import-cost
