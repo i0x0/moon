@@ -37,7 +37,8 @@
     "build": "tsc",
     "docker:up": "docker-compose up -d --build",
     "docker:down": "docker-compose down",
-    "prod:start": "NODE_ENV=production node --optimize_for_size --max_old_space_size=8192 dist/index.js"
+    "prod:start": "NODE_ENV=production node --optimize_for_size --max_old_space_size=8192 dist/index.js",
+    "next:build": "node --optimize_for_size --max_old_space_size=8192 node_modules/.bin/next build"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
