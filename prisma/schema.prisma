@@ -13,6 +13,7 @@ datasource db {
 model User {
   id          String    @id @default(cuid())
   createdAt   DateTime  @default(now())
+  img         String    @default("")
   username    String    @unique
   password    String
   chats       Chat[]    @relation("joined_chat")
@@ -24,6 +25,7 @@ model User {
 model Chat {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
+  img       String    @default("")
   name      String
   owner     User      @relation("chat_owner", fields: [ownerId], references: [id])
   ownerId   String

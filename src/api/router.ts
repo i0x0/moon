@@ -8,6 +8,7 @@ import { failure } from "./utils";
 import status from "statuses";
 import chat from "./chat";
 import { isProd } from "../constants";
+import user from "./user";
 
 export default async function (app: FastifyInstance) {
   app.register(fastifySensible, { errorHandler: false })
@@ -39,4 +40,5 @@ export default async function (app: FastifyInstance) {
   app.register(realtime, { prefix: "/rt" });
   app.register(auth, { prefix: "/auth" });
   app.register(chat, { prefix: "/chat" })
+  app.register(user, { prefix: "/user" });
 }
