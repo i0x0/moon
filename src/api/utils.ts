@@ -4,11 +4,11 @@ import { isProd, SECRET } from "../constants";
 
 export interface Response<T> {
   ok: boolean;
-  message: string;
+  message: string | null;
   data: T;
 }
 
-const failure = <T>(message: string, data: T): Response<T> => {
+const failure = <T>(message: string | null, data: T): Response<T> => {
   return {
     ok: false,
     message,
@@ -16,7 +16,7 @@ const failure = <T>(message: string, data: T): Response<T> => {
   };
 };
 
-const success = <T>(message: string, data: T): Response<T> => {
+const success = <T>(message: string | null, data: T): Response<T> => {
   return {
     ok: true,
     message,
@@ -26,7 +26,7 @@ const success = <T>(message: string, data: T): Response<T> => {
 
 const forceAuth = async (req: Request, rep: Reply) => {
   const token = req.cookies.id || req.headers["authorization"];
-  log(token)
+  //log(token)
   if (!token) {
     log("uhh no token?");
     rep.unauthorized();
@@ -41,7 +41,7 @@ const forceAuth = async (req: Request, rep: Reply) => {
 
 const isAuthed = async (req: FastifyRequest): Promise<boolean> => {
   let token = req.cookies.id || req.headers["authorization"]
-  log(token)
+  //log(token)
   let res: boolean = false;
   if (!token) {
     res = false
@@ -74,7 +74,7 @@ const log = (...data: any[]): void => {
 function toTitleCase(str: string) {
   return str.replace(
     /\w\S*/g,
-    function(txt) {
+    function (txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     }
   );

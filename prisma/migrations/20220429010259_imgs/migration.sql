@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "Chat" ADD COLUMN     "color" TEXT NOT NULL DEFAULT E'',
+ADD COLUMN     "img" TEXT NOT NULL DEFAULT E'';
+
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "img" TEXT NOT NULL DEFAULT E'';
