@@ -27,7 +27,7 @@ export default class {
     });
     this.app = fastify({
       logger: true,
-      pluginTimeout: 1200000,
+      pluginTimeout: 1200_000,
     });
     this.app.decorate("prisma", this.prisma);
     this.app.decorate("roster", this.roster);
@@ -35,7 +35,7 @@ export default class {
     this.setup();
     this.app.listen(PORT, "0.0.0.0", (err) => {
       if (err) {
-        console.error(err);
+        console.error("listenerError", err);
         process.exit(1);
       }
       this.app.log.info("server started...");
@@ -65,7 +65,7 @@ export default class {
       })
       .after((err) => {
         if (err) {
-          console.error(err);
+          console.error("nextjsError", err);
           process.exit(1);
         }
 
@@ -177,7 +177,7 @@ declare module "fastify" {
     roster: string[];
     events: EventEmitter;
   }
-  
+
   interface FastifyRequest {
     userId: string;
   }

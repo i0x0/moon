@@ -6,4 +6,10 @@ module.exports = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-}
+  reactStrictMode: true,
+  concurrentFeatures: true,
+  react: {
+    useSuspense: false,
+    wait: true,
+  },
+};

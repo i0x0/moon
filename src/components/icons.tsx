@@ -1,4 +1,4 @@
-import { Gi3DGlasses, GiAk47U, GiBurningSkull, GiClover, GiDualityMask } from "react-icons/gi";
+import { Gi3DGlasses, GiAk47U, GiBurningSkull, GiCancel, GiClover, GiDualityMask } from "react-icons/gi";
 
 interface IconMap {
   [index: string]: JSX.Element
@@ -10,7 +10,8 @@ const iconMap: IconMap = {
   "glasses": <Gi3DGlasses />,
   "burningSkull": <GiBurningSkull />,
   "clover": <GiClover />,
-  "mask": <GiDualityMask />
+  "mask": <GiDualityMask />,
+  "cancel": <GiCancel />
 }
 
 export default iconMap

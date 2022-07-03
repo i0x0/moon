@@ -1,6 +1,12 @@
+import { useAtom } from "jotai"
+
+import serverIdAtom from "../components/atoms"
 import Sidebar from "../components/Sidebar"
 
 export default function Main() {
+
+  const [id] = useAtom(serverIdAtom)
+
   return (
     <>
       <div className="flex">
@@ -9,7 +15,7 @@ export default function Main() {
           <div className="grid place-items-center h-screen overflow-hidden text-white">
             <span className="text-2xl font-semibold">Welcome back to moon!</span>
             <div className="relative mt-4 bg-gray-600 shadow-md sm:rounded-lg text-left"></div>
-            {}
+            {id}
           </div>
         </div>
       </div>

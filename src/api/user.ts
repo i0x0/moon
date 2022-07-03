@@ -14,6 +14,7 @@ export default async function (app: FastifyInstance) {
             name: true,
             color: true,
             img: true,
+            id: true
           }
         }
       }
